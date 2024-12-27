@@ -37,6 +37,7 @@ jobs:
         run: |
           export PATH="$HOME/.local/bin:$PATH"
           poetry install --no-root  # Install all dependencies without installing the root package
+          poetry add --dev flake8 pytest pytest-asyncio pytest-html  # Add dev dependencies
 
       - name: Lint with flake8
         run: |
