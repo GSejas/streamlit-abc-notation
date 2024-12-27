@@ -11,14 +11,20 @@ with tab1:
     # Sidebar for inputs and controls
     st.sidebar.header("Settings")
 
+    st.sidebar.markdown(
+        "Enter your ABC notation below. You can use the example provided as a starting point."
+    )
     # Text area for ABC notation input
     abc_notation = st.sidebar.text_area(
         "Enter ABC Notation",
         value="X: 1\nT: Scale\nM: 4/4\nK: C\nC D E F | G A B c |",
-        height=200
+        height=300,
     )
+
+    # Checkbox for continuous rendering
+    continuous_render = st.sidebar.checkbox("Enable continuous rendering", value=True)
     st.sidebar.markdown(
-        "Enter your ABC notation above. You can use the example provided as a starting point."
+        "Enable this option to render the ABC notation continuously without pressing the 'Render' button."
     )
 
     # Height for the custom component
@@ -33,11 +39,6 @@ with tab1:
         "You can customize the appearance of the rendered musical score by entering custom CSS above."
     )
 
-    # Checkbox for continuous rendering
-    continuous_render = st.sidebar.checkbox("Enable continuous rendering", value=False)
-    st.sidebar.markdown(
-        "Enable this option to render the ABC notation continuously without pressing the 'Render' button."
-    )
 
     # Buttons for rendering and clearing the input
     if not continuous_render:
@@ -138,6 +139,67 @@ with tab2:
     K: C
     C D E F | G A B c |
     ```
+    """)
+
+    # Additional examples from famous works
+    st.markdown("""
+    ### Additional Examples from Famous Works:
+Here are some popular melodies and harmonies you can add as examples:
+
+### Twinkle Twinkle Little Star
+```abc
+X: 1
+T: Twinkle Twinkle Little Star
+M: 4/4
+K: C
+C C G G | A A G2 | F F E E | D D C2 |
+```
+
+### Ode to Joy (Beethoven)
+```abc
+X: 1
+T: Ode to Joy
+M: 4/4
+K: D
+E E F G | G F E D | C C D E | E D D2 |
+```
+
+### Happy Birthday
+```abc
+X: 1
+T: Happy Birthday
+M: 3/4
+K: C
+G G A G | C B | G G A G | D C | G G G E | C B A | F F E C | D C |
+```
+
+### Jingle Bells
+```abc
+X: 1
+T: Jingle Bells
+M: 4/4
+K: G
+E E E | E E E | E G C D E | F F F F | F E E E | E D D E | D G2 |
+```
+
+### Mary Had a Little Lamb
+```abc
+X: 1
+T: Mary Had a Little Lamb
+M: 4/4
+K: C
+E D C D | E E E2 | D D D2 | E G G2 | E D C D | E E E E | D D E D | C3 |
+```
+
+### Silent Night
+```abc
+X: 1
+T: Silent Night
+M: 3/4
+K: G
+G A G E | G A G E | D2 G2 | G A G E | G A G E | D2 G2 |
+```
+
     """)
 
 with tab3:
