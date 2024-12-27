@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "streamlit-abc-notation"
+version = "0.1.0"
+description = "ABC notation renderer for streamlit"
+authors = ["Jorge <jsequeira03@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+streamlit = "^1.41.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
