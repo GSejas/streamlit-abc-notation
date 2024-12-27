@@ -1,0 +1,178 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Coursegen Backend
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "app/**"
+
+permissions:
+  contents:  write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+
+      - name: Decode and save the secret file
+        run: |
+          echo "$GCLOUD_CREDENTIALS_BASE64" | base64 --decode > coursegen-395816-9918991f71cd.json
+        env:
+          GCLOUD_CREDENTIALS_BASE64: ${{ secrets.GCLOUD_CREDENTIALS_BASE64 }}
+
+      - name: Set up Python 3.10  # Updated Python version
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          export PATH="$HOME/.local/bin:$PATH"
+          poetry config virtualenvs.create false  # Ensure Poetry uses the project environment
+          poetry --version
+
+      - name: Install dependencies with Poetry
+        run: |
+          export PATH="$HOME/.local/bin:$PATH"
+          poetry install --no-root  # Install all dependencies without installing the root package
+
+      - name: Create config directory
+        run: |
+          mkdir -p app/config
+          mkdir -p output/imgs
+
+      - name: Create config.yaml file
+        env:
+          GENIOUS_API_KEY: ${{ secrets.GENIOUS_API_KEY }}
+          PIPELINE_API_TOKEN: ${{ secrets.PIPELINE_API_TOKEN }}
+          SIB_API_KEY: ${{ secrets.SIB_API_KEY }}
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_REDIRECT_URI: ${{ secrets.SPOTIFY_REDIRECT_URI }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          BASE_URL: ${{ secrets.BASE_URL }}
+          TTL_URL: ${{ secrets.TTL_URL }}
+          GEMINI_API: ${{ secrets.GEMINI_API }}
+          NOTION_API: ${{ secrets.NOTION_API }}
+          debug: ${{ secrets.debug }}
+          NOTION_DB_ID_SERIES: ${{ secrets.NOTION_DB_ID_SERIES }}
+          NOTION_DB_ID_ITEMS: ${{ secrets.NOTION_DB_ID_ITEMS }}
+          MOCHI_API_TOKEN: ${{ secrets.MOCHI_API_TOKEN }}
+          STABILITY_AI: ${{ secrets.STABILITY_AI }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ARCHIVE_ACCESS_KEY: ${{ secrets.ARCHIVE_ACCESS_KEY }}
+          ARCHIVE_SECRET_KEY: ${{ secrets.ARCHIVE_SECRET_KEY }}
+          IMGBB_KEY: ${{ secrets.IMGBB_KEY }}
+          TRAKT_CLIENT_ID: ${{ secrets.TRAKT_CLIENT_ID }}
+          TRAKT_CLIENT_SECRET: ${{ secrets.TRAKT_CLIENT_SECRET }}
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          DB_URL: ${{ secrets.DB_URL }}
+          APP_URL: ${{ secrets.APP_URL }}
+          SUNO_URL: ${{ secrets.SUNO_URL }}
+          REDIS_PASS: ${{ secrets.REDIS_PASS }}
+          REDIS_IP: ${{ secrets.REDIS_IP }}
+          COOKIE_NAME: ${{ secrets.COOKIE_NAME }}
+          COOKIE_KEY: ${{ secrets.COOKIE_KEY }}
+          COOKIE_EXPIRY_DAYS: ${{ secrets.COOKIE_EXPIRY_DAYS }}
+          COOKIE_SECURE: ${{ secrets.COOKIE_SECURE }}
+          PEXELS_API_TOKEN: ${{ secrets.PEXELS_API_TOKEN }}
+          B2_KEY_NAME: ${{ secrets.B2_KEY_NAME }}
+          B2_KEY_ID: ${{ secrets.B2_KEY_ID }}
+          B2_KEY_APP_KEY: ${{ secrets.B2_KEY_APP_KEY }}
+        run: |
+          echo "GENIOUS_API_KEY: $GENIOUS_API_KEY" >> app/config/config.yaml
+          echo "PIPELINE_API_TOKEN: $PIPELINE_API_TOKEN" >> app/config/config.yaml
+          echo "SIB_API_KEY: $SIB_API_KEY" >> app/config/config.yaml
+          echo "SPOTIFY_CLIENT_ID: $SPOTIFY_CLIENT_ID" >> app/config/config.yaml
+          echo "SPOTIFY_REDIRECT_URI: $SPOTIFY_REDIRECT_URI" >> app/config/config.yaml
+          echo "SPOTIFY_CLIENT_SECRET: $SPOTIFY_CLIENT_SECRET" >> app/config/config.yaml
+          echo "OPENAI_API_KEY: $OPENAI_API_KEY" >> app/config/config.yaml
+          echo "BASE_URL: $BASE_URL" >> app/config/config.yaml
+          echo "TTL_URL: $TTL_URL" >> app/config/config.yaml
+          echo "GEMINI_API: $GEMINI_API" >> app/config/config.yaml
+          echo "NOTION_API: $NOTION_API" >> app/config/config.yaml
+          echo "debug: $debug" >> app/config/config.yaml
+          echo "NOTION_DB_ID_SERIES: $NOTION_DB_ID_SERIES" >> app/config/config.yaml
+          echo "NOTION_DB_ID_ITEMS: $NOTION_DB_ID_ITEMS" >> app/config/config.yaml
+          echo "MOCHI_API_TOKEN: $MOCHI_API_TOKEN" >> app/config/config.yaml
+          echo "STABILITY_AI: $STABILITY_AI" >> app/config/config.yaml
+          echo "ANTHROPIC_API_KEY: $ANTHROPIC_API_KEY" >> app/config/config.yaml
+          echo "ARCHIVE_ACCESS_KEY: $ARCHIVE_ACCESS_KEY" >> app/config/config.yaml
+          echo "ARCHIVE_SECRET_KEY: $ARCHIVE_SECRET_KEY" >> app/config/config.yaml
+          echo "IMGBB_KEY: $IMGBB_KEY" >> app/config/config.yaml
+          echo "TRAKT_CLIENT_ID: $TRAKT_CLIENT_ID" >> app/config/config.yaml
+          echo "TRAKT_CLIENT_SECRET: $TRAKT_CLIENT_SECRET" >> app/config/config.yaml
+          echo "TMDB_API_KEY: $TMDB_API_KEY" >> app/config/config.yaml
+          echo "DB_URL: $DB_URL" >> app/config/config.yaml
+          echo "APP_URL: $APP_URL" >> app/config/config.yaml
+          echo "SUNO_URL: $SUNO_URL" >> app/config/config.yaml
+          echo "REDIS_PASS: $REDIS_PASS" >> app/config/config.yaml
+          echo "REDIS_IP: $REDIS_IP" >> app/config/config.yaml
+          echo "COOKIE_NAME: $COOKIE_NAME" >> app/config/config.yaml
+          echo "COOKIE_KEY: $COOKIE_KEY" >> app/config/config.yaml
+          echo "COOKIE_EXPIRY_DAYS: $COOKIE_EXPIRY_DAYS" >> app/config/config.yaml
+          echo "COOKIE_SECURE: $COOKIE_SECURE" >> app/config/config.yaml
+          echo "PEXELS_API_TOKEN: $PEXELS_API_TOKEN" >> app/config/config.yaml
+          echo "B2_KEY_NAME: $B2_KEY_NAME" >> app/config/config.yaml
+          echo "B2_KEY_ID: $B2_KEY_ID" >> app/config/config.yaml
+          echo "B2_KEY_APP_KEY: $B2_KEY_APP_KEY" >> app/config/config.yaml
+          echo "email_testmode: true" >> app/config/config.yaml
+          echo "TTS_ENABLED: false" >> app/config/config.yaml
+
+      - name: Lint with flake8
+        run: |
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+          
+      - name: Smoke Tests with pytest
+        run: |
+          pytest -m smoke  --alluredir allure-results --cov=app --cov-report=html --junitxml=report.xml  tests/endpoint 
+
+      - name: Upload allure report
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: allure-results
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: htmlcov
+
+      - name: Upload flake8 report
+        uses: actions/upload-artifact@v3
+        with:
+          name: flake8-report
+          path: flake8_report.txt
+
+      - name: Upload flake8 full report
+        uses: actions/upload-artifact@v3
+        with:
+          name: flake8-full-report
+          path: flake8_report_full.txt
+
+      - name: Upload pytest results
+        uses: actions/upload-artifact@v3
+        with:
+          name: pytest-results
+          path: report.xml
+
+      - name: Clean up secret file
+        run: rm coursegen-395816-9918991f71cd.json
+
+        
+      - name: Deploy allure report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./allure-results
