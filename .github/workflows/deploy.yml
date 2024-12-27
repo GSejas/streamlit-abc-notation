@@ -5,9 +5,10 @@ name: Coursegen Backend
 
 on:
   push:
-    branches: ["main"]
+    branches: ["master"]
     paths:
-      - "app/**"
+      - "src/**"
+      - "tests/**"
 
 permissions:
   contents:  write
