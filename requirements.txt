@@ -1,5 +1,1 @@
 streamlit
-streamlit-components
-numpy
-pandas
-```
