@@ -1,6 +1,6 @@
 import streamlit as st
 import streamlit.components.v1 as components
-from src.tabs import demo_tab, examples_tab, about_tab
+from tabs import demo_tab, examples_tab, about_tab
 
 # Title of the app
 st.title("ABC Notation Renderer")
