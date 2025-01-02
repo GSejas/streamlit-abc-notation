@@ -52,8 +52,8 @@ jobs:
           
       - name: Smoke Tests with pytest
         run: |
-          mkdir -p allure-results
-          pytest -m smoke  --cov=app --cov-report=html --junitxml=report.xml  tests
+    #   mkdir -p allure-results
+          pytest -m smoke  --cov=src --cov-report=html --junitxml=report.xml  tests
 
     #   - name: Upload allure report
     #     uses: actions/upload-artifact@v3
