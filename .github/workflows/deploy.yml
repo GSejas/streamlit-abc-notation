@@ -26,6 +26,12 @@ jobs:
         with:
           python-version: "3.13"
 
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+            distribution: zulu
+            java-version: 17
+
       - name: Install Poetry
         run: |
           curl -sSL https://install.python-poetry.org | python3 -
@@ -47,13 +53,13 @@ jobs:
       - name: Smoke Tests with pytest
         run: |
           mkdir -p allure-results
-          pytest -m smoke  --alluredir allure-results --cov=app --cov-report=html --junitxml=report.xml  tests/endpoint 
+          pytest -m smoke  --cov=app --cov-report=html --junitxml=report.xml  tests
 
-      - name: Upload allure report
-        uses: actions/upload-artifact@v3
-        with:
-          name: allure-report
-          path: allure-results
+    #   - name: Upload allure report
+    #     uses: actions/upload-artifact@v3
+    #     with:
+    #       name: allure-report
+    #       path: allure-results
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v3
