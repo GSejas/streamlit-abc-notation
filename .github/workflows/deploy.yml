@@ -21,10 +21,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python 3.13  # Updated Python version
+      - name: Set up Python 3.11  # Updated Python version
         uses: actions/setup-python@v3
         with:
-          python-version: "3.13"
+          python-version: "3.11"
 
       - name: Set up JDK
         uses: actions/setup-java@v3

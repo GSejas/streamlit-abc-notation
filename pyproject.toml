@@ -6,8 +6,9 @@ authors = ["Jorge <jsequeira03@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.13"
+python = "^3.11"
 streamlit = "^1.41.1"
+packaging = "^24.2"
 
 
 [build-system]
