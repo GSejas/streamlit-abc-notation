@@ -1,3 +1,37 @@
+"""
+@moduleName: demo_tab
+@version: 1.0
+@since: 10-03-2023
+@lastUpdated: 10-03-2023
+@completionTag: TO_DO
+
+@projectSummary: 
+ This module renders the Demo tab of the ABC Notation Renderer app.
+
+@techStack: Python, Streamlit
+
+@dependency: streamlit
+
+@interModuleDependency: 
+ - main.py: Utilizes demo_tab for rendering the Demo section.
+
+@requirementsTraceability:
+ - RQ_DemoTab: Should provide a demo of ABC notation rendering.
+
+@briefDescription: 
+ demo_tab encapsulates the functionalities related to rendering the Demo section of the app.
+
+@methods:
+ - render: Renders the Demo tab content.
+
+@contributors: 
+ - Jorge Sequeira Rojas
+
+@examples: 
+ import demo_tab
+ demo_tab.render()
+"""
+
 import streamlit as st
 import streamlit.components.v1 as components
 

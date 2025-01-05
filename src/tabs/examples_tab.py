@@ -1,3 +1,37 @@
+"""
+@moduleName: examples_tab
+@version: 1.0
+@since: 10-03-2023
+@lastUpdated: 10-03-2023
+@completionTag: TO_DO
+
+@projectSummary: 
+ This module renders the Examples tab of the ABC Notation Renderer app.
+
+@techStack: Python, Streamlit
+
+@dependency: streamlit
+
+@interModuleDependency: 
+ - main.py: Utilizes examples_tab for rendering the Examples section.
+
+@requirementsTraceability:
+ - RQ_ExamplesTab: Should provide examples of ABC notation.
+
+@briefDescription: 
+ examples_tab encapsulates the functionalities related to rendering the Examples section of the app.
+
+@methods:
+ - render: Renders the Examples tab content.
+
+@contributors: 
+ - Jorge Sequeira Rojas
+
+@examples: 
+ import examples_tab
+ examples_tab.render()
+"""
+
 import streamlit as st
 
 def render():

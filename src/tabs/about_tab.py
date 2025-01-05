@@ -1,3 +1,37 @@
+"""
+@moduleName: about_tab
+@version: 1.0
+@since: 10-03-2023
+@lastUpdated: 10-03-2023
+@completionTag: TO_DO
+
+@projectSummary: 
+ This module renders the About tab of the ABC Notation Renderer app.
+
+@techStack: Python, Streamlit
+
+@dependency: streamlit
+
+@interModuleDependency: 
+ - main.py: Utilizes about_tab for rendering the About section.
+
+@requirementsTraceability:
+ - RQ_AboutTab: Should provide information about the app and its purpose.
+
+@briefDescription: 
+ about_tab encapsulates the functionalities related to rendering the About section of the app.
+
+@methods:
+ - render: Renders the About tab content.
+
+@contributors: 
+ - Jorge Sequeira Rojas
+
+@examples: 
+ import about_tab
+ about_tab.render()
+"""
+
 import streamlit as st
 
 def render():
