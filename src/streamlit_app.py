@@ -32,10 +32,15 @@
 @examples: 
  Run the script to start the Streamlit app.
 """
+# Add the src directory to the sys.path
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(os.path.join(os.path.dirname(__file__)))
 
 import streamlit as st
 import streamlit.components.v1 as components
-from src.tabs import demo_tab, examples_tab, about_tab
+from tabs import demo_tab, examples_tab, about_tab
 
 # Title of the app
 st.title("ABC Notation Renderer")
