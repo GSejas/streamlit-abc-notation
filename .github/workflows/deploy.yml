@@ -39,6 +39,9 @@ jobs:
           poetry config virtualenvs.create false  # Ensure Poetry uses the project environment
           poetry --version
 
+      - name: Install distutils
+        run: sudo apt-get install python3-distutils
+
       - name: Install dependencies with Poetry
         run: |
           export PATH="$HOME/.local/bin:$PATH"
