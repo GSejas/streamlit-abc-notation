@@ -55,7 +55,7 @@ jobs:
           
       - name: Smoke Tests with pytest
         run: |
-          pytest -m smoke  --cov=src --cov-report=html --junitxml=report.xml  tests
+          poetry run pytest -m smoke  --cov=src --cov-report=html --junitxml=report.xml  tests
 
 
       - name: Upload coverage report
