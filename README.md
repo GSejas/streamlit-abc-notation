@@ -1,6 +1,6 @@
 # Streamlit ABC Notation Project
 
-![Build Status](https://github.com/gsejas/mailsac-pyclient/actions/workflows/deploy.yml/badge.svg)
+![Build Status](https://github.com/gsejas/streamlit-abc-notation/actions/workflows/deploy.yml/badge.svg)
 ![License](https://img.shields.io/github/license/Gsejas/streamlit-abc-notation)
 
 This project is a Streamlit application that showcases a custom component for rendering ABC notation using abc.js. It provides a user-friendly interface for inputting ABC notation, rendering it as sheet music, and includes playback features.
